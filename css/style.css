@@ -1,0 +1,28 @@
+.container{
+    border: 1px solid black;
+}
+.temp_img{
+    width: 40px;
+    height: 45px;
+}
+.humidity_img{
+    width: 40px;
+    height: 45px;
+}
+.pressure_img{
+    width: 40px;
+    height: 45px;
+}
+.speed_img{
+    width: 40px;
+    height: 35px;
+}
+.icon_img{
+    background: lightblue;
+    width: 110px;
+    height: 110px;
+}
+.title_name{
+    font-size: 30px;
+    text-align: center;
+}
