@@ -1,5 +1,21 @@
+.card-header{
+    font-size: 25px;
+}
+.form-control{
+    display: unset;
+    width: 130px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+}
+.search{
+    justify-content: center;
+}
 .row{
-    border: 1px solid lightslategrey;
+    background: rgb(62, 207, 207);
+    border: 1px solid rgb(216, 253, 253);
+    color: white;
+    font-size: 18px;
 }
 .temp_img{
     width: 40px;
@@ -24,5 +40,8 @@
 }
 .title_name{
     font-size: 20px;
-    text-align: center;
+    justify-content: flex-start;
+}
+.validationCustom03{
+    vertical-align: inherit;
 }

@@ -4,22 +4,22 @@ try {
     const container = document.getElementById('container')
     const search = document.getElementById('search')
     const id_country = document.getElementById('id_country')
-    const key = '9b20bcd80b5071f21cfdd55e4a824b72'
-    const lang = 'en'
+    var key = '9b20bcd80b5071f21cfdd55e4a824b72'
+    var lang = 'en'
     const picture_api = 'http://openweathermap.org/img/wn/' //https://openweathermap.org/img/wn/02n.png
     const extension = '.png'
-    var url_api = `https://api.openweathermap.org/data/2.5/weather?lang=${lang}&appid=${key}`
 
     search.addEventListener('click', function(){
 
-        container.innerHTML = ''
-
+        var url_api = `https://api.openweathermap.org/data/2.5/weather?lang=${lang}&appid=${key}`
         let temp_c = 0
         let temp_f = 0
         let temp_c_min = 0
         let temp_f_min = 0
         let temp_c_max = 0
         let temp_f_max = 0
+
+        container.innerHTML = ''
 
         url_api += "&id=" + id_country.value
 
@@ -36,16 +36,17 @@ try {
                 temp_f_min = cal_temp(data.main.temp_min, "F")
                 temp_f_max = cal_temp(data.main.temp_max, "F")
 
-                container.innerHTML = `<div class="row">
-                                            <div class="col-md-4 title_name">
+                container.innerHTML = `<div class="row justify-content-md-center">
+                                            <div class="col-md-2 title_name">
                                                 Weather for ${data.name} , ${data.sys.country}
                                             </div>
-                                            <div class="col-md-4 title_name">
-                                                ${data.weather[0].main} ${data.weather[0].description}
+                                            <div class="col-md-2 title_name">
+                                                ${data.weather[0].main} , ${data.weather[0].description}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-2">
+                                                <br>
                                                 <img src="img/pressure.png" class="img-fluid pressure_img" alt="">
                                                 ${data.main.pressure}
                                                 <br>
@@ -56,8 +57,11 @@ try {
                                                 <br>
                                                 <img src="img/speed.png" class="img-fluid speed_img" alt="">
                                                 ${data.wind.speed} / ${data.wind.deg} °
+                                                <br>
+                                                <br>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
+                                                <br>
                                                 <img src="${picture_api + data.weather[0].icon + extension}" class="img-fluid icon_img" alt="">
                                                 <br>
                                                 Min: ${temp_c_min}°C / ${temp_f_min}°F
@@ -65,18 +69,20 @@ try {
                                                 Max: ${temp_c_max}°C / ${temp_f_max}°F
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-4 col-lg-4">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-4 col-lg-2">
+                                                <br>
                                                 ${temp_c}
                                                 <img src="img/temp_c.png" class="img-fluid temp_img" alt="">
                                             </div>
-                                            <div class="col-4 col-lg-4">
+                                            <div class="col-4 col-lg-2">
+                                                <br>
                                                 ${temp_f}
                                                 <img src="img/temp_F.png" class="img-fluid temp_img" alt="">
+                                                <br>
+                                                <br>
                                             </div>
                                         </div>`
-
-                //console.log(temp_k + " - " + temp_c + " - " + temp_f)
             }else{
                 swal({
                     title: "Warning",
@@ -93,11 +99,10 @@ try {
             })
         })
 
+        async function weather(){
+            return await fetch(url_api)
+        }
     })
-
-    async function weather(){
-        return await fetch(url_api)
-    }
 
 function cal_temp(value_temp, string){
     
